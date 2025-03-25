@@ -9,7 +9,8 @@ First, ensure your live server meets the following requirements:
 2. Configure Your Laravel Project
 Next, we copy  the .env.example file to .env, using command
  “cp .env.example .env”
-Also update database credentials and other configurations in .env. 
+Also update database credentials and other configurations in .env.
+
  DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -17,28 +18,28 @@ DB_DATABASE=hospital
 DB_USERNAME=root
 DB_PASSWORD=
 
-3. Upload Your Project
+4. Upload Your Project
 We use FTP or SSH to upload your Laravel project files to server. We use an FTP client like FileZilla or WinSCP and upload all files to the /var/www/hospital directory.
 Or we can use Git to clone the repository with this command
 ” git clone your-repo-url.git /var/www/your-project”
 
-4. Install Dependencies
+5. Install Dependencies
 Run the following command to install project dependencies without development packages and optimize the autoloader: “composer install --no-dev --optimize-autoloader”
 
-5. Set Up File Permission
+6. Set Up File Permission
 Set the correct permissions for the project files:
 “sudo chown -R www-data:www-data /var/www/hospital
 sudo chmod -R 755 /var/www/hoapital
 sudo chmod -R 775 storage bootstrap/cache”
 
-6. Generate Application Key
+7. Generate Application Key
 To run the web, we must generate the application key using: “php artisan key:generate”
 
-7. Run Database Migrations and Seeding
+8. Run Database Migrations and Seeding
 Then we execute database migrations and seeders to populate the database:
 “php artisan migrate –force”
 “php artisan db:seed –force”
-8. Configure Web Server
+9. Configure Web Server
 For Nginx Server setup , we use  this code:
 “server {
     listen 80;
@@ -59,10 +60,10 @@ For Nginx Server setup , we use  this code:
     }
 }”
 
-9. Set Up Cron Jobs(if applicable)
+10. Set Up Cron Jobs(if applicable)
 Add the following cron job to run scheduled tasks:
 “* * * * * php /var/www/your-project/artisan schedule:run >> /dev/null 2>&1”
-10. Configure Caching and Optimization
+11. Configure Caching and Optimization
 Optimize the application by caching configuration, routes, and views:
 “php artisan config:cache”
 “php artisan route:cache”
